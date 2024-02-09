@@ -4,7 +4,7 @@
 
 $gris: #C0C0C0;
 $grisClaro: #CDCDCD;
-$negro: #000000;
+$negro:  #242323 ;
 $rojo: #EF3340;
 $blanco: #FFFFFF;
 
@@ -36,8 +36,12 @@ body {
 
     div {
         input {
-            background-color: $blanco !important;
+            background-color: $blanco;
             color: $negro !important;
+        }
+
+        .checkMarcado {
+            background-color: $rojo!important;
         }
 
         label {
@@ -45,7 +49,11 @@ body {
         }
 
         a {
-            color: $negro !important;
+            color: $negro;
+        }
+
+        .terminos {
+            color: $rojo!important;
         }
 
         .loginButton {
@@ -77,6 +85,44 @@ body {
     a {
         text-decoration: none;
         color: $grisClaro;
+    }
+}
+
+//
+// navigation
+//
+
+nav {
+    background-color: $negro !important;
+    color: $blanco;
+
+    img {
+        min-width: 7h;
+        height: 7vh;
+    }
+
+    button {
+        background-color: $rojo;
+    }
+
+    a {
+        text-decoration: none;
+        color: $grisClaro;
+    }
+}
+
+.buscar {
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.botondropdown {
+    background-color: $negro;
+    button:hover {
+        background-color: $rojo;
     }
 }
 
