@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->integer('postal_code');
             $table->date('birth_date');
             $table->integer('phone');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
