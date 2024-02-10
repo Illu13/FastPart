@@ -38,7 +38,7 @@
                         {{ __('Esta cuenta no está verificada.') }}
 
                         <button form="send-verification" class="underline text-sm text-blue-700-800 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                            {{ __('Haz click aquí para reenviar el correo.') }}
+                            {{ __('Haz click aquí para enviar el correo.') }}
                         </button>
                     </p>
 
@@ -75,8 +75,8 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-black"
-                >{{ __('Saved.') }}</p>
+                    class="text-sm text-green-600"
+                >{{ __('Guardado.') }}</p>
             @endif
         </div>
     </form>
