@@ -74,7 +74,7 @@
             @else
                 <div class="grid-cols-2 flex content-center items-center ml-10 gap-5">
                     <a href="{{ route('login') }}"><x-navbuttons >{{ __('Acceder') }}</x-navbuttons></a>
-                    <a href="{{ route('login') }}"><x-navbuttons href="{{ route('register') }}">{{ __('Registrarse') }}</x-navbuttons></a>
+                    <a href="{{ route('register') }}"><x-navbuttons href="{{ route('register') }}">{{ __('Registrarse') }}</x-navbuttons></a>
                 </div>
             @endif
 

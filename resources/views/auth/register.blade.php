@@ -7,13 +7,18 @@
             <div class="col-span-1">
                 <x-input-label for="name" :value="__('Nombre')"/>
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                              autofocus autocomplete="name"/>
+                              autofocus autocomplete="name" :valor="$user->user['given_name']"/>
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>
             </div>
             <div class="col-span-1">
                 <x-input-label for="surname" :value="__('Apellido')"/>
-                <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')"
-                              required autofocus autocomplete="name"/>
+                @if(isset($user->user['family_name']))
+                    <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')"
+                                  :valor="$user->user['family_name']" required autofocus autocomplete="name"/>
+                @else
+                    <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')"
+                                  required autofocus autocomplete="name"/>
+                @endif
                 <x-input-error :messages="$errors->get('surname')" class="mt-2"/>
             </div>
         </div>
@@ -22,7 +27,7 @@
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')"/>
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                          autocomplete="username"/>
+                          :valor="$user->user['email']" autocomplete="username"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2"/>
         </div>
 
