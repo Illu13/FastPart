@@ -6,7 +6,9 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -27,21 +29,22 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         if ($request->has('photo')) {
-            $request->validate([
-                'photo' => 'image|mimes:jpeg,png,jpg|max:2048',
-            ]);
             $imagen = $request->file('photo');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+            $ruta = $imagen->store('public/img/userPhotos');
+            $rutaPublica = str_replace('public', 'storage', $ruta);
 
-            // Guardar la imagen en la carpeta storage/public/img/userPhotos
-            $ruta = $imagen->storeAs('public/storage/img/userPhotos', $nombreImagen);
-
-            // Obtener la ruta relativa para guardarla en la base de datos
-            $rutaRelativa = 'storage/img/userPhotos/' . $nombreImagen;
-            $request->photo = $rutaRelativa;
+        }
+        if (Auth::user()->photo != "storage/img/userPhotos/defaultUserImage.png") {
+            File::delete(Auth::user()->photo);
+            setcookie("prueba7", Auth::user()->photo, time() + (86400));
 
         }
         $request->user()->fill($request->validated());
+        if (isset($rutaPublica)) {
+            $request->user()->photo = $rutaPublica;
+        }
+
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -49,8 +52,11 @@ class ProfileController extends Controller
 
 
         $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        if (isset($validator)) {
+            return Redirect::route('profile.edit')->with('status', 'profile-updated')->withErrors($validator);
+        } else {
+            return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        }
     }
 
     /**
