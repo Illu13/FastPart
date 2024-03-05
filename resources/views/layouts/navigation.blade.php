@@ -36,16 +36,16 @@
 
                             <button
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 focus:outline-none transition ease-in-out duration-150">
-                                    <div class="text-white">{{ Auth::user()->name }}</div>
+                                <div class="text-white">{{ Auth::user()->name }}</div>
 
-                                    <div class="ms-1 text-white">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                             viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </div>
+                                <div class="ms-1 text-white">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
                             </button>
                         </x-slot>
 
@@ -114,28 +114,28 @@
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Subir producto') }}
                     </x-responsive-nav-link>
-                <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Perfil') }}
-                    </x-responsive-nav-link>
-
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-
-                        <x-responsive-nav-link :href="route('logout')"
-                                               onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                            {{ __('Cerrar sesión') }}
+                    <div class="mt-3 space-y-1">
+                        <x-responsive-nav-link :href="route('profile.edit')">
+                            {{ __('Perfil') }}
                         </x-responsive-nav-link>
-                    </form>
 
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link :href="route('logout')"
+                                                   onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                {{ __('Cerrar sesión') }}
+                            </x-responsive-nav-link>
+                        </form>
+
+                    </div>
+                    @else
+
+                    @endif
                 </div>
-            @else
-
-            @endif
         </div>
-    </div>
 </nav>
 
 <nav class="hidden bg-black lg:grid grid-cols-8 buscar">
