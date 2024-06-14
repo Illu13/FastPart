@@ -23,6 +23,6 @@ class mobileindexcards extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.mobileindexcards')->with('products', $this->products);
+        return view('components.mobileindexcards')->with('product', $this->products);
     }
 }

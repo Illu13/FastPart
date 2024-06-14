@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'status' => $this->faker->randomElement(['available', 'sold', 'pending']),
             'antiquity' => $this->faker->randomElement(['new', 'used']),
             'kilometers' => $this->faker->numberBetween(1000, 50000),
-            'price' => $this->faker->randomFloat(2, 100, 10000),
+            'price' => $this->faker->numberBetween(1, 9999),
             'description' => $this->faker->paragraph,
             'photo' => $this->faker->imageUrl(640, 480, '')
         ];

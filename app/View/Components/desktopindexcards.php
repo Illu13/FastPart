@@ -23,6 +23,6 @@ class desktopindexcards extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.desktopindexcards')->with('products', $this->products);
+        return view('components.desktopindexcards')->with('product', $this->products);
     }
 }

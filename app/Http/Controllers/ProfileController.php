@@ -79,4 +79,8 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function index(): View
+    {
+        return view('users.users');
+    }
 }

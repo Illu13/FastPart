@@ -105,7 +105,7 @@
         <div class="flex items-center mt-4">
             <input id="terms" name="terms" type="checkbox" value="" required
                    class="checkMarcado w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="link-checkbox" class="ms-2 text-sm">Acepto los <a href="#" class="terminos hover:underline">términos
+            <label for="link-checkbox" class="ms-2 text-sm">Acepto los <a href="{{route('cookies')}}" class="terminos hover:underline">términos
                     y condiciones</a>.</label>
         </div>
         <div class="flex items-center mt-4">

@@ -1,4 +1,6 @@
 <nav x-data="{ open: false }" class="border-b border-white">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <!-- Primary Navigation Menu -->
     <div class="flex-grow ">
         <div class="flex justify-between h-16">
@@ -10,22 +12,14 @@
                     </a>
                 </div>
             </div>
-            <div class="flex-grow w-fit mt-1">
-                <form action="#" method="GET" class="hidden sm:block sm:pl-2">
-                    <label for="topbar-search" class="sr-only">Search</label>
-                    <div class="relative mt-1">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                 fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                            </svg>
-                        </div>
-                        <input type="text" name="email" id="topbar-search"
-                               class="flex-grow w-full bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block pl-9 p-2.5"
-                               placeholder="Buscar partes">
-                    </div>
-                </form>
+            <div class="flex-grow w-fit mt-1 hidden md:flex ">
+                <ul class="navbar-list w-full centrar">
+                    <li><a href="{{ route('seeall') }}" class="hover:text-gray-700">Tienda</a></li>
+                    <li><a href="{{ route('about-us') }}" class="hover:text-gray-700">Sobre nosotros</a></li>
+                    <li><a href="{{ route('cookies') }}" class="hover:text-gray-700">Política de privacidad</a></li>
+                    <li><a href="{{ route('cart') }}" class="hover:text-gray-700"><span
+                                class="material-symbols-outlined">shopping_cart</span></a></li>
+                </ul>
             </div>
             <!-- Settings Dropdown -->
             @if(Auth::check())
@@ -50,9 +44,22 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Subir producto') }}
-                            </x-dropdown-link>
+                            @if(Auth::user()->role == 'admin')
+                                <x-dropdown-link :href="route('users')">
+                                    {{ __('Lista de usuarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('product.list')">
+                                    {{ __('Lista de productos') }}
+                                </x-dropdown-link>
+                            @endif
+                            @if(Auth::user()->role == 'seller')
+                                <x-dropdown-link :href="route('product.upload')">
+                                    {{ __('Subir producto') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('product.myproducts')">
+                                    {{ __('Mis productos') }}
+                                </x-dropdown-link>
+                            @endif
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
@@ -73,8 +80,12 @@
                 </div>
             @else
                 <div class="grid-cols-2 flex content-center items-center ml-10 gap-5">
-                    <a href="{{ route('login') }}"><x-navbuttons >{{ __('Acceder') }}</x-navbuttons></a>
-                    <a href="{{ route('register') }}"><x-navbuttons href="{{ route('register') }}">{{ __('Registrarse') }}</x-navbuttons></a>
+                    <a href="{{ route('login') }}">
+                        <x-navbuttons>{{ __('Acceder') }}</x-navbuttons>
+                    </a>
+                    <a href="{{ route('register') }}">
+                        <x-navbuttons href="{{ route('register') }}">{{ __('Registrarse') }}</x-navbuttons>
+                    </a>
                 </div>
             @endif
 
@@ -98,115 +109,57 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Página principal') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            @if(Auth::check())
+            <div class="pt-4 pb-1 border-t border-gray-200 dark:bord    er-gray-600">
+                @if(Auth::check())
 
-                <div class="px-4">
-                    <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
-                <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Subir producto') }}
-                    </x-responsive-nav-link>
-                    <div class="mt-3 space-y-1">
-                        <x-responsive-nav-link :href="route('profile.edit')">
-                            {{ __('Perfil') }}
-                        </x-responsive-nav-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-responsive-nav-link :href="route('logout')"
-                                                   onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                {{ __('Cerrar sesión') }}
-                            </x-responsive-nav-link>
-                        </form>
-
+                    <div class="px-4">
+                        <div
+                            class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                     </div>
-                    @else
+                    <div class="mt-3 space-y-1">
+                        @if(Auth::user()->role == 'admin')
+                            <x-dropdown-link :href="route('users')">
+                                {{ __('Lista de usuarios') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('product.list')">
+                                {{ __('Lista de productos') }}
+                            </x-dropdown-link>
+                        @endif
+                        @if(Auth::user()->role == 'seller')
+                            <x-dropdown-link :href="route('product.upload')">
+                                {{ __('Subir producto') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('product.myproducts')">
+                                {{ __('Mis productos') }}
+                            </x-dropdown-link>
+                        @endif
+                        <div class="mt-3 space-y-1">
+                            <x-responsive-nav-link :href="route('profile.edit')">
+                                {{ __('Perfil') }}
+                            </x-responsive-nav-link>
 
-                    @endif
-                </div>
-        </div>
-</nav>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-<nav class="hidden bg-black lg:grid grid-cols-8 buscar">
-    <div class="col-span-1 text-white">
-        <a href="">Suspensión</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Motor</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Carrocería</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Dirección</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Fluidos</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Pintura</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Motos</a>
-    </div>
-    <div class="col-span-1 text-white border-l border-white">
-        <a href="">Tunning</a>
-    </div>
+                                <x-responsive-nav-link :href="route('logout')"
+                                                       onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Cerrar sesión') }}
+                                </x-responsive-nav-link>
+                            </form>
 
+                        </div>
+                        @else
 
-</nav>
-
-<nav class="lg:hidden botondropdown">
-
-    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-            class="justify-center text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center w-full"
-            type="button">Categorías
-        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-             viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m1 1 4 4 4-4"/>
-        </svg>
-    </button>
-    <div id="dropdown"
-         class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-full justify-center items-center">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 w-full" aria-labelledby="dropdownDefaultButton">
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Suspensión</a>
-            </li>
-            <li>
-                <a href="#"
-                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Motor</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Carrocería</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dirección</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Fluidos</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pintura</a>
-            </li>
-            <li>
-                <a href="#"
-                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Motos</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tunning</a>
-            </li>
-        </ul>
-    </div>
+                        @endif
+                    </div>
+            </div>
 </nav>

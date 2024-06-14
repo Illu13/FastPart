@@ -1,143 +1,448 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-$gris: #C0C0C0;
-$grisClaro: #CDCDCD;
-$negro:  #242323 ;
-$rojo: #EF3340;
-$blanco: #FFFFFF;
-
-body {
-    background-color: $gris !important;
-}
-
-.background {
-    background-color: $gris !important;
-}
-
-.photo {
-    width: 30vh;
-    height: 30vh;
-    margin-bottom: 5vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.centrar {
-    display: flex;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.userInputs {
-    background-color: $grisClaro !important;
-
-    div {
-        input {
-            background-color: $blanco;
-            color: $negro !important;
-        }
-
-        .checkMarcado {
-            background-color: $rojo!important;
-        }
-
-        label {
-            color: $negro !important;
-        }
-
-        .selectorFoto {
-            background-color: $rojo !important;
-        }
-        a {
-            color: $negro;
-        }
-
-        .terminos {
-            color: $rojo!important;
-        }
-
-        .loginButton {
-            background-color: $rojo !important;
-            color: $blanco !important;
-        }
-
-        span {
-            color: $negro !important;
-        }
-    }
-}
-
-//
-// Footer
-//
-.botonesRegistroNav {
-
-    background-color: $rojo!important;
-    color: $blanco!important;
-
-}
-.footer {
-    background-color: $negro;
-    color: $blanco;
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
 
 
+    $gris: #C0C0C0;
+    $grisClaro: #CDCDCD;
+    $negro:  #242323 ;
+    $rojo: #EF3340;
+    $blanco: #FFFFFF;
 
-
-
-
-    img {
-        min-width: 20vh;
-        height: 20vh;
+    body {
+        background-color: $gris !important;
     }
 
-    a {
-        text-decoration: none;
-        color: $grisClaro;
-    }
-}
-
-//
-// navigation
-//
-
-nav {
-    background-color: $negro !important;
-    color: $blanco;
-
-    img {
-        min-width: 7h;
-        height: 7vh;
+    .background {
+        background-color: $gris !important;
     }
 
-    button {
-        background-color: $rojo;
-    }
-
-    a {
-        text-decoration: none;
-        color: $grisClaro;
-    }
-}
-
-.buscar {
-    div {
+    .photo {
+        width: 30vh;
+        height: 30vh;
+        margin-bottom: 5vh;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-}
 
-.botondropdown {
-    background-color: $negro;
-    button:hover {
+    .centrar {
+        display: flex;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .userInputs {
+        background-color: $grisClaro !important;
+
+        div {
+            input {
+                background-color: $blanco;
+                color: $negro !important;
+            }
+
+            .checkMarcado {
+                background-color: $rojo!important;
+            }
+
+            label {
+                color: $negro !important;
+            }
+
+            .selectorFoto {
+                background-color: $rojo !important;
+            }
+            a {
+                color: $negro;
+            }
+
+            .terminos {
+                color: $rojo!important;
+            }
+
+            .loginButton {
+                background-color: $rojo !important;
+                color: $blanco !important;
+            }
+
+            span {
+                color: $negro !important;
+            }
+        }
+    }
+
+    //
+    // Footer
+    //
+    .botonesRegistroNav {
+
+        background-color: $rojo!important;
+        color: $blanco!important;
+
+    }
+    .footer {
+        background-color: $negro;
+        color: $blanco;
+
+        img {
+            min-width: 20vh;
+            height: 20vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: $grisClaro;
+        }
+    }
+
+    //
+    // navigation
+    //
+
+    nav {
+        background-color: $negro !important;
+        color: $blanco;
+
+        img {
+            min-width: 7h;
+            height: 7vh;
+        }
+
+        button {
+            background-color: $rojo;
+        }
+
+        a {
+            text-decoration: none;
+            color: $grisClaro;
+        }
+    }
+
+    .buscar {
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .botondropdown {
+        background-color: $negro;
+        button:hover {
+            background-color: $rojo;
+        }
+    }
+
+    .subirProducto {
+        display: flex;
+        justify-content: center;
+        .formulario {
+            max-width: 40vh;
+        }
+    }
+
+    //carousel
+
+    $font-family-primary: 'Montserrat', sans-serif;
+    $font-family-secondary: 'Roboto Slab', serif;
+
+    body {
+        background-color: #000;
+    }
+
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient( to bottom, transparentize(#0E1D33, 0.2) , transparentize(#0E1D33, 0.8) );
+    }
+
+    .hero-slider {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+
+        .carousel-cell {
+            margin-right: 100px !important;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+            .inner {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                color: white;
+                text-align: center;
+
+                .subtitle {
+                    font-family: $font-family-secondary;
+                    font-size: 2.2rem;
+                    line-height: 1.2em;
+                    font-weight: 200;
+                    font-style: italic;
+                    letter-spacing: 3px;
+                    color: rgba(255,255,255,0.5);
+                    margin-bottom: 5px;
+                }
+
+                .title {
+                    font-family: $font-family-primary;
+                    font-size: 3rem;
+                    line-height: 1.2em;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    margin-bottom: 40px;
+                }
+                .btn{
+                    border: 1px solid #fff;
+                    padding: 14px 18px;
+                    text-transform: uppercase;
+                    font-family: $font-family-primary;
+                    font-size: 0.8rem;
+                    letter-spacing: 3px;
+                    color: #fff;
+                    text-decoration: none;
+                    transition: all .2s ease;
+                    &:hover{
+                        background: #fff;
+                        color: #000;
+                    }
+                }
+            }
+        }
+
+        .flickity-prev-next-button {
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            &:hover{
+                background: transparent;
+            }
+            .arrow{
+                fill: white;
+            }
+        }
+        .flickity-page-dots {
+            bottom: 30px;
+            .dot{
+                width: 30px;
+                height: 4px;
+                opacity: 1;
+                background: rgba(255,255,255,0.5);
+                border: 0 solid white;
+                border-radius: 0;
+                &.is-selected{
+
+                    background: #ff0000;
+                    border: 0 solid #ff0000;
+                }
+            }
+        }
+    }
+
+    .divCarousel {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .buttomText {
+        height: 80%;
+        display: flex;
+        align-items: flex-end; /* Alinea el contenido en la parte baja */
+        justify-content: center;
+    }
+
+    .btnCarousel {
+        display: flex;
+        align-items: flex-end; /* Alinea el contenido en la parte baja */
+        justify-content: center;
+        background-color: $negro;
+    }
+
+    //product cards
+
+    .wrapper {
+        height: 420px;
+        margin: 50px auto;
+        border-radius: 7px 7px 7px 7px;
+        /* VIA CSS MATIC https://goo.gl/cIbnS */
+        -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        @media screen and (max-width: 940px) {
+          height: 0px;
+        }
+
+    }
+
+    .product-img {
+        float: left;
+        width: 327px;
+        @media screen and (min-width: 900px) {
+            width: 500px;
+        }
+    }
+
+    .product-img img {
+
+        border-radius: 7px 0 0 7px;
+        @media screen and (min-width: 900px) {
+            height: 420px !important;
+        }
+    }
+
+    .product-info {
+        float: left;
+        height: 420px;
+        width: 327px;
+        border-radius: 0 7px 10px 7px;
+        background-color: $blanco;
+    }
+
+    .product-text {
+        height: 300px;
+        width: 327px;
+    }
+
+    .product-text h1 {
+        margin: 0 0 0 38px;
+        padding-top: 52px;
+        font-size: 34px;
+        color: $negro;
+    }
+
+
+
+    .product-text h2 {
+        margin: 0 0 0 38px;
+        font-size: 13px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $negro;
+        letter-spacing: 0.2em;
+    }
+
+    .product-text p {
+        height: 125px;
+        margin: 0 0 0 38px;
+        color: $negro;
+        line-height: 1.7em;
+        font-size: 15px;
+        font-weight: lighter;
+        overflow: hidden;
+    }
+
+    .product-price-btn {
+        display: flex;
+        flex-direction: column;
+        height: 103px;
+        width: 327px;
+        margin-top: 17px;
+    }
+
+    .product-price-btn p {
+        display: flex;
+        margin: 0 0 0 28px;
+        font-size: 24px;
+        font-weight: lighter;
+        color: $negro;
+        justify-content: center;
+
+    }
+
+    span {
+        display: inline-block;
+        font-size: 24px;
+    }
+
+    .product-price-btn button, input[type="submit"] {
+
+        float: right;
+        height: 50px;
+        width: 176px;
+        box-sizing: border-box;
+        border: transparent;
+        border-radius: 60px;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: $negro;
+        background-color: $rojo;
+        cursor: pointer;
+        outline: none;
+    }
+
+
+    .product-price-btn button:hover, input:hover{
+        background-color: $gris;
+    }
+
+
+   //show product page
+
+    .price {
+        color: $rojo;
+    }
+    .category {
+        color: $negro
+    }
+    .brand {
+        color: $rojo;
+    }
+    .cart {
+        background-color: $rojo;
+        transition: background-color 0.5s ease;
+    }
+
+    .cart:hover{
+        background-color: darken($rojo, 20%);
+    }
+    .productPhoto{
+        @media screen and (max-width: 768px) {
+            height: 270px !important;
+        }
+    }
+
+    .pagination {
+        background-color: $gris;
+    }
+    .paginationsButtons {
         background-color: $rojo;
     }
-}
 
+    .pageButtons {
+        background-color: $negro;
+        color: $rojo;
+    }
 
+    .navbar {
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+    }
 
+    .navbar-list {
+        display: flex;
+        padding: 0; /* Eliminar el padding predeterminado */
+        list-style-type: none; /* Eliminar los marcadores de lista */
+        margin: 0; /* Eliminar el margen predeterminado */
+    }
 
+    .navbar-list li {
+        flex: 1; /* Hace que cada elemento ocupe el mismo ancho */
+        border-left: 1px solid #ccc; /* Borde izquierdo entre elementos */
+        padding: 10px; /* Margen horizontal */
+        text-align: center; /* Centrar el texto dentro de cada elemento */
+    }
+
+    .navbar-list li:first-child {
+        border-left: none; /* Eliminar el borde izquierdo del primer elemento */
+    }
 
